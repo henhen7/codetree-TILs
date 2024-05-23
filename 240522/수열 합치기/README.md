@@ -36,3 +36,9 @@
 [easy]: https://img.shields.io/badge/쉬움-%235cb85c.svg?for-the-badge
 [medium]: https://img.shields.io/badge/보통-%23FFC433.svg?for-the-badge
 [hard]: https://img.shields.io/badge/어려움-%23D24D57.svg?for-the-badge
+
+### 풀이
+1. list(map(int, input().split()))을 통해 두 개의 리스트에 입력값 저장
+2. append()를 이용하여 리스트 b에 저장된 값을 a에 추가
+3. sort()를 통해 오름차순 정렬
+4. 반복문을 통해 리스트를 순회하면서 공백 단위로 출력
