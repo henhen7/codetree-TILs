@@ -6,22 +6,27 @@ for _ in range(m):
     a, b = map(int, input().split())
     li[a].append(b) # 단방향 처리
 
-# 방문 처리를 위한 리스트 생성
-visit = [False] * (n + 1)
+# 스택으로 처리
+def dfs(i):
+    visit = [False] * (n + 1)
+    stack = [i]
+    count = 0
 
-# 재귀 함수 생성
-def dfs(node):
-    visit[node] = True 
-    for i in li[node]:
-        if not visit[i]:
-            dfs(i) 
-        
+    while stack:
+        node = stack.pop()
+        if not visit[node]:
+            visit[node] = True
+            for j in li[node]:
+                if not visit[j]:
+                    stack.append(j)
+            if node != i:
+                count += 1
+    return count
+
 result = [[] for _ in range(n + 1)] # 각 노드별 방문 횟수를 담을 리스트 생성
 
 for i in range(n + 1):
-    dfs(i)
-    result[i].append((sum(visit) - 1))
-    visit = [False] * (n + 1) # 모든 케이스를 처리해야하므로, 방문 표시 초기화
+    result[i].append(dfs(i))
 
 ans = []
 for i in range(n + 1):
