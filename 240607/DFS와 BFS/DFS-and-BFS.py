@@ -7,6 +7,7 @@ for _ in range(m):
     li[a].append(b)
     li[b].append(a) 
 
+# 각 리스트의 원소(정점)을 오름차순으로 정렬
 for i in li:
     i.sort()
 
