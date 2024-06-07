@@ -37,5 +37,6 @@ for i in range(n):
             size.append(dfs(i, j)) # dfs 함수 돌면서 사이즈 리스트에 추가
 
 print(ans)
+size.sort()
 for i in size:
     print(i)
