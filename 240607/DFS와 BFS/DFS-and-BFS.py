@@ -7,6 +7,9 @@ for _ in range(m):
     li[a].append(b)
     li[b].append(a) 
 
+for i in li:
+    i.sort()
+
 # 방문 처리 리스트 생성
 visit = [False] * (n + 1)
 stack = [s]
