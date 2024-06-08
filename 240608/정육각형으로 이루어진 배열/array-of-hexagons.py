@@ -13,12 +13,17 @@ for i in range(n + 2):
     visit.append([False] * (m + 2))
 count = 0
 
-# 2차원 맵 내에서의 재귀함수 생성
+# 2차원 맵 내에서의 스택 생성
 def dfs(x, y):
     global count
+    stack = []
+    stack.append((x, y))
     # 현재 노드가 0이고, 해당 노드를 방문하지 않았을 시 방문 처리
     if graph[x][y] == 0 and visit[x][y] == False:
         visit[x][y] = True
+    
+    while stack:
+        x, y = stack.pop()
         # 각 인접칸의 방향 정의 -> 짝수행인 경우, 홀수행인 경우
         if x % 2 == 0:
             directions = [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]
@@ -33,9 +38,10 @@ def dfs(x, y):
             if (0 <= nx < n + 2) and (0 <= ny < m + 2):
                 if graph[nx][ny] == 1:
                     count += 1
-            # 인접 노드가 방문하지 않은 노드인 경우, 재귀적으로 돌며 dfs 탐색
+            # 인접 노드가 방문하지 않은 노드인 경우, 스택에 추가하고 방문 처리
                 if graph[nx][ny] == 0 and visit[nx][ny] == False:
-                    dfs(nx, ny)
+                    stack.append((nx, ny))
+                    visit[nx][ny] = True
 
 # 내부의 빈 부분까지 확인할 필요는 없으므로, 시작점을 (0,0)으로 설정해 겉부분만 탐색
 # 맵의 확장으로 인해 모든 칸이 연결되어 있다.
