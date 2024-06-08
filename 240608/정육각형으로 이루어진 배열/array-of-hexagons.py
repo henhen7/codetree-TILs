@@ -1,21 +1,3 @@
-"""
-6방향 인접칸 구하기
-(2,3)일 때
-(x - 1, y - 1)
-(x - 1, y)
-(x, y - 1)
-(x, y + 1)
-(x + 1, y - 1)
-(x + 1, y)
-
-(3,3)일 때
-(x - 1, y)
-(x - 1, y + 1)
-(x, y - 1)
-(x, y + 1)
-(x + 1, y)
-(x + 1, y + 1)
-"""
 n, m = map(int, input().split())
 # 2차원 리스트 맵 생성
 graph = []
@@ -30,12 +12,13 @@ visit = []
 for i in range(n + 2):
     visit.append([False] * (m + 2))
 count = 0
+
 # 2차원 맵 내에서의 재귀함수 생성
 def dfs(x, y):
+    global count
     # 현재 노드가 0이고, 해당 노드를 방문하지 않았을 시 방문 처리
     if graph[x][y] == 0 and visit[x][y] == False:
         visit[x][y] = True
-        global count
         # 각 인접칸의 방향 정의 -> 짝수행인 경우, 홀수행인 경우
         if x % 2 == 0:
             directions = [(-1, -1), (-1, 0), (0, -1), (0, 1), (1, -1), (1, 0)]
@@ -53,8 +36,6 @@ def dfs(x, y):
             # 인접 노드가 방문하지 않은 노드인 경우, 재귀적으로 돌며 dfs 탐색
                 if graph[nx][ny] == 0 and visit[nx][ny] == False:
                     dfs(nx, ny)
-        return count
-    return False
 
 # 내부의 빈 부분까지 확인할 필요는 없으므로, 시작점을 (0,0)으로 설정해 겉부분만 탐색
 # 맵의 확장으로 인해 모든 칸이 연결되어 있다.
