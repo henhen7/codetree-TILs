@@ -36,6 +36,4 @@ def bfs():
                     if nx == n-1 and ny == m-1:  # 목적지에 도달한 경우
                         return distance[nx][ny]
 
-    return -1  # 목적지에 도달할 수 없는 경우 -1 반환 (필요에 따라 수정 가능)
-
 print(bfs())
