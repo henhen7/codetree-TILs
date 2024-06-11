@@ -51,19 +51,15 @@ def bfs(x, y):
 
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
+            hx, wy = x + h + dx[i] - 1, y + w + dy[i] - 1
 
             # nx, ny가 맵 안에 있고, 값이 0이고 방문 처리 없는지 확인
             if (1 <= nx <= n) and (1 <= ny <= m) and graph[nx][ny] == 0 and not visit[nx][ny]:
                 # 직사각형이 맵 내에서 지나갈 수 있는 지 체크
-                if nx < 1 or ny < 1 or nx + h - 1 > n or ny + w - 1> m:
+                if nx < 1 or ny < 1 or hx > n or wy > m:
                     continue # for i in range(4) loop: 직사각형이 맵을 벗어나는 경우, 해당 방향을 건너뜀
-                for i in range(h):
-                    for j in range(w):
-                        if graph[nx + i][ny + j] == 1:
-                            break # for j in range(w) loop
-                    else: # 파이썬 for - else문: for loop이 성공적으로 돌면 else를 실행
-                        continue # for i in range(h) loop: 직사각형 내부에 1이 없는 경우, 다시 방향 탐색
-                    break # for i in range(h) loop
+                if graph[hx][wy] == 1:
+                    continue
                 
                 else:
                 # 지나갈 수 있다면 방문 체크하고 큐에 추가
