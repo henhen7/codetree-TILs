@@ -71,5 +71,6 @@ def bfs(x, y):
                         return count + 1
                     visit[nx][ny] = True
                     Q.append((nx, ny, count + 1))
+    return -1 # 이동에 실패하면 -1 리턴
 
 print(bfs(sx, sy))
