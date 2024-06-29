@@ -31,7 +31,6 @@ def max_p(n, li):
         
         if memo[day] != -1:
             return memo[day] # 메모제이션 되어 있으면 값 반환
-            memo[day] = max(max_p_skip, max_p_work)
         
         # 일 넘기는 날
         max_p_skip = count(day + 1)
@@ -43,7 +42,7 @@ def max_p(n, li):
             max_p_work = li[day][1] + count(day + li[day][0])
             # 현재 일의 보수 저장하고 새 일 진행 경우의 수 탐색(재귀 호출)
         
-            memo[day] = max(max_p_skip, max_p_work)
+        memo[day] = max(max_p_skip, max_p_work)
         return memo[day]
     
     return count(0)
